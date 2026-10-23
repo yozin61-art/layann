@@ -1,0 +1,292 @@
+:root {
+  --wine: #180c14;
+  --wine-light: #301220;
+  --rose: #e9a6b6;
+  --rose-bright: #ffd1dc;
+  --cream: #fff8f2;
+  --gold: #e8c99b;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: var(--cream);
+  background:
+    radial-gradient(circle at 50% 28%, rgba(126, 40, 69, .35), transparent 38%),
+    linear-gradient(145deg, #0d080c 0%, var(--wine) 46%, #11090f 100%);
+  font-family: "Noto Kufi Arabic", sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px), linear-gradient(rgba(255,255,255,.012) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: radial-gradient(circle at center, black, transparent 78%);
+}
+
+.noise {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  opacity: .035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
+}
+
+.glow {
+  position: fixed;
+  width: 36rem;
+  height: 36rem;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: .15;
+  pointer-events: none;
+}
+.glow-one { background: #d15579; top: -22rem; right: -14rem; }
+.glow-two { background: #9e5079; bottom: -25rem; left: -14rem; }
+
+.topbar {
+  width: min(1180px, calc(100% - 48px));
+  height: 90px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  position: relative;
+  z-index: 5;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--cream);
+  text-decoration: none;
+  font-size: .86rem;
+  letter-spacing: .02em;
+}
+
+.brand-mark {
+  width: 39px;
+  height: 39px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(232,201,155,.42);
+  border-radius: 50% 50% 45% 55%;
+  color: var(--gold);
+  font-family: "Aref Ruqaa", serif;
+  font-size: 1.35rem;
+  transform: rotate(-6deg);
+}
+
+.status {
+  color: rgba(255,248,242,.53);
+  font-size: .66rem;
+  font-weight: 300;
+}
+
+.status i {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 8px;
+  border-radius: 50%;
+  background: #dda0af;
+  box-shadow: 0 0 0 5px rgba(221,160,175,.08), 0 0 14px #dda0af;
+}
+
+main { min-height: calc(100vh - 146px); display: grid; place-items: center; }
+
+.hero {
+  width: min(900px, calc(100% - 36px));
+  padding: 72px 0 54px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  color: rgba(232,201,155,.72);
+  font-size: .68rem;
+  letter-spacing: .08em;
+  opacity: 0;
+  animation: rise .9s .15s ease forwards;
+}
+.eyebrow span { font-size: .55rem; }
+
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  margin: 28px 0 16px;
+  color: var(--rose);
+  opacity: 0;
+  animation: rise .9s .28s ease forwards;
+}
+.ornament span { width: 32px; height: 1px; background: linear-gradient(90deg, transparent, rgba(233,166,182,.55)); }
+.ornament span:last-child { transform: rotate(180deg); }
+.ornament b { font-size: 1.15rem; font-weight: 400; text-shadow: 0 0 18px rgba(233,166,182,.5); }
+
+h1 {
+  margin: 0;
+  color: var(--cream);
+  font-family: "Aref Ruqaa", serif;
+  font-size: clamp(3rem, 7.7vw, 6.8rem);
+  font-weight: 400;
+  line-height: .95;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+  opacity: 0;
+  animation: rise 1s .38s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+h1 em {
+  display: inline-block;
+  color: var(--rose-bright);
+  font-style: normal;
+  text-shadow: 0 12px 45px rgba(233,166,182,.15);
+}
+
+.intro {
+  margin: 31px auto 34px;
+  color: rgba(255,248,242,.63);
+  font-family: "Aref Ruqaa", serif;
+  font-size: clamp(1rem, 2vw, 1.28rem);
+  line-height: 1.95;
+  opacity: 0;
+  animation: rise .9s .55s ease forwards;
+}
+
+.telegram-button {
+  width: min(390px, 100%);
+  min-height: 82px;
+  margin: 0 auto;
+  padding: 13px 18px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+  overflow: hidden;
+  color: #2b1019;
+  text-decoration: none;
+  background: linear-gradient(120deg, #f5bcc9, #ffe1e5 52%, #eaa8b8);
+  border: 1px solid rgba(255,255,255,.55);
+  border-radius: 22px;
+  box-shadow: 0 18px 50px rgba(158,57,88,.28), inset 0 1px 0 rgba(255,255,255,.8);
+  transition: transform .25s ease, box-shadow .25s ease;
+  opacity: 0;
+  animation: rise .9s .7s ease forwards;
+}
+
+.telegram-button:hover { transform: translateY(-4px); box-shadow: 0 24px 65px rgba(158,57,88,.4), inset 0 1px 0 white; }
+.telegram-button:focus-visible { outline: 3px solid white; outline-offset: 5px; }
+.button-shine { position: absolute; inset: 0; background: linear-gradient(110deg, transparent 25%, rgba(255,255,255,.42) 45%, transparent 62%); transform: translateX(110%); transition: transform .7s ease; }
+.telegram-button:hover .button-shine { transform: translateX(-110%); }
+
+.telegram-icon {
+  flex: 0 0 auto;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 17px;
+  color: white;
+  background: linear-gradient(145deg, #2ca5e0, #1688c2);
+  box-shadow: 0 8px 20px rgba(29,139,191,.25);
+}
+.telegram-icon svg { width: 27px; height: 27px; fill: currentColor; }
+
+.button-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; position: relative; z-index: 1; }
+.button-copy strong { font-size: .9rem; font-weight: 600; }
+.button-copy small { color: rgba(43,16,25,.6); font-family: system-ui, sans-serif; font-size: .75rem; direction: ltr; }
+.arrow { margin-right: auto; font-size: 1.35rem; transition: transform .25s ease; }
+.telegram-button:hover .arrow { transform: translateX(-5px); }
+
+.whisper {
+  margin: 23px 0 0;
+  color: rgba(255,248,242,.37);
+  font-size: .62rem;
+  font-weight: 300;
+  opacity: 0;
+  animation: rise .9s .85s ease forwards;
+}
+
+.signature {
+  width: 150px;
+  margin: 43px auto 0;
+  color: rgba(255,209,220,.8);
+  font-family: "Aref Ruqaa", serif;
+  font-size: 1.65rem;
+  transform: rotate(-4deg);
+  opacity: 0;
+  animation: rise .9s 1s ease forwards;
+}
+.signature span { display: block; margin-bottom: -9px; }
+.signature svg { width: 100%; overflow: visible; }
+.signature path { fill: none; stroke: rgba(232,201,155,.55); stroke-width: 1.2; stroke-linecap: round; }
+
+footer {
+  width: min(1180px, calc(100% - 48px));
+  min-height: 56px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  border-top: 1px solid rgba(255,255,255,.06);
+  color: rgba(255,248,242,.25);
+  font-size: .56rem;
+  font-weight: 300;
+  position: relative;
+  z-index: 3;
+}
+.footer-heart { color: rgba(233,166,182,.6); animation: pulse 2.2s ease-in-out infinite; }
+
+.petals span {
+  position: fixed;
+  top: -25px;
+  left: var(--x);
+  width: calc(10px * var(--s));
+  height: calc(16px * var(--s));
+  z-index: 1;
+  border-radius: 80% 0 80% 30%;
+  background: linear-gradient(145deg, rgba(255,201,214,.55), rgba(135,45,72,.16));
+  filter: blur(.1px);
+  animation: fall 19s var(--d) linear infinite;
+}
+
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse { 50% { transform: scale(1.3); text-shadow: 0 0 10px var(--rose); } }
+@keyframes fall { 0% { transform: translate3d(0,-5vh,0) rotate(0); opacity: 0; } 10% { opacity: .48; } 100% { transform: translate3d(65px,110vh,0) rotate(520deg); opacity: 0; } }
+
+@media (max-width: 640px) {
+  .topbar { width: calc(100% - 30px); height: 76px; }
+  .status { display: none; }
+  main { min-height: calc(100svh - 126px); }
+  .hero { padding: 54px 0 42px; }
+  .desktop-break { display: none; }
+  h1 { font-size: clamp(3.2rem, 16vw, 5rem); line-height: 1; }
+  .intro { max-width: 340px; margin-top: 26px; line-height: 1.8; }
+  .telegram-button { min-height: 77px; border-radius: 20px; }
+  .telegram-icon { width: 48px; height: 48px; border-radius: 15px; }
+  .button-copy strong { font-size: .78rem; }
+  .signature { margin-top: 34px; }
+  footer { width: calc(100% - 30px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+}
